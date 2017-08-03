@@ -1,0 +1,271 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% a0poster Portrait Poster
+% LaTeX Template
+% Version 1.0 (22/06/13)
+%
+% The a0poster class was created by:
+% Gerlinde Kettl and Matthias Weiser (tex@kettl.de)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a0,portrait]{a0poster}
+
+\usepackage{multicol} % This is so we can have multiple columns of text side-by-side
+\columnsep=100pt % This is the amount of white space between the columns in the poster
+\columnseprule=3pt % This is the thickness of the black line between the columns in the poster
+
+\usepackage[svgnames]{xcolor} % Specify colors by their 'svgnames', for a full list of all colors available see here: http://www.latextemplates.com/svgnames-colors
+
+\usepackage{times} % Use the times font
+%\usepackage{palatino} % Uncomment to use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\graphicspath{{figures/}} % Location of the graphics files
+\usepackage{booktabs} % Top and bottom rules for table
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+\usepackage{amsfonts, amsmath, amsthm, amssymb} % For math fonts, symbols and environments
+\usepackage{prftree}
+\usepackage{txfonts}
+\usepackage{tabularx, array}
+\usepackage{wrapfig} % Allows wrapping text around tables and figures
+
+\newcolumntype{C}{>{\centering\arraybackslash$}X<{$}}
+\newcommand{\parr}{\rotatebox[origin=c]{180}{$\&$}}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	POSTER HEADER
+%----------------------------------------------------------------------------------------
+
+% The header is divided into two boxes:
+% The first is 75% wide and houses the title, subtitle, names, university/organization and contact information
+% The second is 25% wide and houses a logo for your university/organization or a photo of you
+% The widths of these boxes can be easily edited to accommodate your content as you see fit
+
+\begin{minipage}[b]{0.75\linewidth}
+\veryHuge \color{NavyBlue} \textbf{blockchain linear logic cheat sheet} \color{Black}\\ % Title
+\Huge\textit{much logic, such formal, wow}\\[2cm] % Subtitle
+\huge \textbf{Denis Erfurt\& Jack Ek}\\[0.5cm] % Author(s)
+\huge DappHub\\[0.4cm] % University/organization
+\Large \texttt{denis@dapphub.com}\\
+
+\end{minipage}
+%
+\begin{minipage}[b]{0.25\linewidth}
+\includegraphics[width=20cm]{logo.jpg}\\
+\end{minipage}
+
+\vspace{1cm} % A bit of extra whitespace between the header and poster content
+
+%----------------------------------------------------------------------------------------
+
+\begin{multicols}{2} % This is how many columns your poster will be broken into, a portrait poster is generally split into 2 columns
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+% \color{Navy} % Navy color for the abstract
+
+\begin{abstract}
+
+
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+% \color{DarkSlateGray}
+
+\section*{LL Sequent Calculus}
+
+\begin{tabularx}{\linewidth}{CCC}
+  \prftree[r]{?}
+  {\vdash \Gamma, A}
+  {\vdash \Gamma, ?A}
+  &
+  \prftree[r]{w}
+  {\vdash \Gamma}
+  {\vdash \Gamma, ?A}
+  &
+  \prftree[r]{c}
+  {\vdash \Gamma, ?A, ?A}
+  {\vdash \Gamma, ?A}
+  \\ \\
+  \prftree[r]{!}
+  {\vdash ?A_1,...,?A_n, B}
+  {\vdash ?A_1,...,?A_n, !B}
+  &
+  \prftree[r]{\&}
+  {\vdash \Gamma, A}
+  {\vdash \Gamma, B}
+  {\vdash \Gamma, A\& B}
+  &
+  \prftree[r]{$\oplus_1$}
+  {\vdash \Gamma, A}
+  {\vdash \Gamma, A\oplus B}
+  \\ \\
+  \prftree[r]{$\oplus_2$}
+  {\vdash \Gamma, B}
+  {\vdash \Gamma, A\oplus B}
+  &
+  \prftree[r]{$\otimes$}
+  {\vdash \Gamma, A}
+  {\vdash B\Delta}
+  {\vdash \Gamma, A\otimes B\Delta}
+  &
+  \prftree[r]{$\parr$}
+  {\vdash \Gamma, A, B}
+  {\vdash \Gamma, A\parr B}
+\end{tabularx}
+
+\section*{ILL Sequent Calculus}
+
+\begin{tabularx}{\linewidth}{CC}
+  \prftree[r]{$\otimes$L}
+  {}
+  {}
+  {}
+  &
+  \prftree[r]{$\otimes$R}
+  {}
+  {}
+  {}
+  \\
+
+  \prftree[r]{$\oplus$L}
+  {\Delta, A\vdash C}
+  {\Delta, B\vdash C}
+  {\Delta, A\oplus B\vdash C}
+  &
+  \prftree[r]{$\oplus R_i$}
+  {\Delta\vdash A_i}
+  {\Delta\vdash A_0\oplus A_1}
+\end{tabularx}
+
+
+\section*{Negation and De-Morgan's laws}
+
+\begin{tabularx}{\linewidth}{CCC}
+  (A^\bot)^\bot \equiv A &
+  (A\otimes B)^\bot \equiv A^\bot \parr B^\bot &
+  (A\& B)^\bot \equiv A^\bot \oplus B^\bot \\ \\
+  (A\parr B)^\bot \equiv A^\bot \otimes B^\bot &
+  (A\oplus B)^\bot \equiv A^\bot \& B^\bot &
+\end{tabularx}
+
+\section*{something}
+
+\begin{center}
+  \begin{tabular}{r|cc}
+    &  conjunction & disjunction \\
+    multiplicative & $\otimes$ & $\parr$ \\
+    additive & $\&$ & $\oplus$
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{rcc}
+    positive &:& $\otimes$, $\oplus$, $\exists$ \\
+    negative &:& $\&$, $\parr$, $\forall$
+  \end{tabular}
+\end{center}
+
+
+\section*{Structural Rules}
+
+\subsubsection*{distributivity}
+
+\begin{tabularx}{\linewidth}{CC}
+  A \otimes (B\oplus C) \multimapboth (A\otimes B) \oplus (A \otimes C)
+  &
+  A \parr (B\& C) \multimapboth (A\parr B) \& (A \parr C)
+\end{tabularx}
+
+
+
+
+\subsubsection*{RuleZer}
+
+\begin{tabularx}{\linewidth}{CCC}
+  \prftree[r]{$Id$}{}{   ? A      \vdash   ? A      }
+&
+  \prftree[r]{$Prem$}{}{ \Gamma  \vdash \Delta  }
+&
+  \prftree[r]{$Partial$}{}{ \Gamma  \vdash \Delta  }
+\end{tabularx}
+
+
+\subsubsection*{RuleCut}
+
+\begin{tabularx}{\linewidth}{CCC}
+  \prftree[r]{$Cut$}{  \Theta  ,  A     \vdash \Delta  }{ \Gamma  \vdash  A    }{  \Gamma  , \Theta   \vdash \Delta  }
+\end{tabularx}
+
+
+\subsubsection*{RuleStruct}
+
+\begin{tabularx}{\linewidth}{CCC}
+  \prftree[r]{$PL$}{  (  \Gamma_1  , \Delta_1   ) , (  \Gamma_2  , \Delta_2   )  \vdash \Theta  }{  (  \Gamma_1  , \Gamma_2   ) , (  \Delta_1  , \Delta_2   )  \vdash \Theta  }
+&
+  \prftree[r]{$PR$}{ \Theta  \vdash  (  \Delta_1  , \Gamma_1   ) , (  \Delta_2  , \Gamma_2   )  }{ \Theta  \vdash  (  \Delta_1  , \Delta_2   ) , (  \Gamma_1  , \Gamma_2   )  }
+&
+  \prftree[r]{$AR$}{ \Gamma  \vdash  (  \Delta_1  , \Delta_2   ) , \Delta_3   }{ \Gamma  \vdash  \Delta_1  , (  \Delta_2  , \Delta_3   )  }
+\\\\
+  \prftree[r]{$AR$}{ \Gamma  \vdash  \Delta_1  , (  \Delta_2  , \Delta_3   )  }{ \Gamma  \vdash  (  \Delta_1  , \Delta_2   ) , \Delta_3   }
+&
+  \prftree[r]{$AL$}{  (  \Delta_1  , \Delta_2   ) , \Delta_3   \vdash \Gamma  }{  \Delta_1  , (  \Delta_2  , \Delta_3   )  \vdash \Gamma  }
+&
+  \prftree[r]{$AL$}{  \Delta_1  , (  \Delta_2  , \Delta_3   )  \vdash \Gamma  }{  (  \Delta_1  , \Delta_2   ) , \Delta_3   \vdash \Gamma  }
+\\\\
+  \prftree[r]{$IL_L$}{   \cdot   , \Gamma   \vdash \Delta  }{ \Gamma  \vdash \Delta  }
+&
+  \prftree[r]{$IL_L$}{ \Gamma  \vdash \Delta  }{   \cdot   , \Gamma   \vdash \Delta  }
+&
+  \prftree[r]{$IL_R$}{  \Gamma  ,  \cdot    \vdash \Delta  }{ \Gamma  \vdash \Delta  }
+\\\\
+  \prftree[r]{$IL_R$}{ \Gamma  \vdash \Delta  }{  \Gamma  ,  \cdot    \vdash \Delta  }
+&
+  \prftree[r]{$IR_L$}{ \Gamma  \vdash   \cdot   , \Delta   }{ \Gamma  \vdash \Delta  }
+&
+  \prftree[r]{$IR_L$}{ \Gamma  \vdash \Delta  }{ \Gamma  \vdash   \cdot   , \Delta   }
+\\\\
+  \prftree[r]{$IR_R$}{ \Gamma  \vdash  \Delta  ,  \cdot    }{ \Gamma  \vdash \Delta  }
+&
+  \prftree[r]{$IR_R$}{ \Gamma  \vdash \Delta  }{ \Gamma  \vdash  \Delta  ,  \cdot    }
+\end{tabularx}
+
+
+\subsubsection*{RuleU}
+
+\begin{tabularx}{\linewidth}{CCC}
+  \prftree[r]{$\otimes_L$}{  \Gamma  , (   A    ,  B     )  \vdash  C    }{  \Gamma  ,   A  \otimes B      \vdash  C    }
+&
+  \prftree[r]{$\multimap_R$}{  \Gamma  ,  A     \vdash  B    }{ \Gamma  \vdash   A  \multimap B     }
+\end{tabularx}
+
+
+\subsubsection*{RuleBin}
+
+\begin{tabularx}{\linewidth}{CCC}
+  \prftree[r]{$\otimes_R$}{ \Delta  \vdash  B    }{ \Gamma  \vdash  A    }{  \Gamma  , \Delta   \vdash   A  \otimes B     }
+&
+  \prftree[r]{$\multimap_L$}{  \Delta  ,  B     \vdash  C    }{ \Gamma  \vdash  A    }{  (  \Gamma  , \Delta   ) ,   A  \multimap B      \vdash  C    }
+\end{tabularx}
+
+
+
+\end{multicols}
+\end{document}
